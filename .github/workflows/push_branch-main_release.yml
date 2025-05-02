@@ -21,6 +21,7 @@ env:
   publish-artifacts: false
   build-native-image: false
   IMAGE_NAME: ghcr.io/cycrilabs/test-cli-app
+  image-tag-short: 'latest'
 
 jobs:
   test:
@@ -121,10 +122,10 @@ jobs:
       - name: Deploy project & image
         run: >
           mvn -B package -DskipTests
-          -Dquarkus.container-image.build=true
           -Dquarkus.jib.platforms=linux/${{ matrix.architecture }}
-          -Dquarkus.container-image.tag=${{steps.version.outputs.TAG_MAJOR_MINOR_PATCH}}-${{ matrix.architecture }}
-          -Dquarkus.container-image.additional-tags=${{ steps.version.outputs.TAG_MAJOR_MINOR }}-${{ matrix.architecture }},${{ steps.version.outputs.TAG_MAJOR }}-${{ matrix.architecture }}
+          -Dquarkus.container-image.tag=${{env.image-tag-short}}-${{ matrix.architecture }}
+          -Dquarkus.container-image.additional-tags=${{steps.version.outputs.TAG_MAJOR_MINOR_PATCH}}-${{ matrix.architecture }},${{ steps.version.outputs.TAG_MAJOR_MINOR }}-${{ matrix.architecture }},${{ steps.version.outputs.TAG_MAJOR }}-${{ matrix.architecture }}
+          -Dquarkus.container-image.build=true
           -Dquarkus.container-image.push=true
           -Dquarkus.container-image.registry=ghcr.io
           -Dquarkus.container-image.username=${{ github.actor }}
@@ -168,6 +169,20 @@ jobs:
             # Push the manifest
             docker manifest push ghcr.io/${IMAGE_WITHOUT_TAG}:${VERSION_TAG}
           done
+
+          # Create the manifest
+          docker manifest create ghcr.io/${IMAGE_WITHOUT_TAG}:${{env.image-tag-short}} \
+            ghcr.io/${IMAGE_WITHOUT_TAG}:${{env.image-tag-short}}-amd64 \
+            ghcr.io/${IMAGE_WITHOUT_TAG}:${{env.image-tag-short}}-arm64
+
+          # Add platform-specific annotations
+          docker manifest annotate ghcr.io/${IMAGE_WITHOUT_TAG}:${{env.image-tag-short}} \
+            ghcr.io/${IMAGE_WITHOUT_TAG}:${{env.image-tag-short}}-amd64 --os linux --arch amd64
+          docker manifest annotate ghcr.io/${IMAGE_WITHOUT_TAG}:${{env.image-tag-short}} \
+            ghcr.io/${IMAGE_WITHOUT_TAG}:${{env.image-tag-short}}-arm64 --os linux --arch arm64
+
+          # Push the manifest
+          docker manifest push ghcr.io/${IMAGE_WITHOUT_TAG}:${{env.image-tag-short}}
 
   next-dev-version:
     needs: build-container-image
