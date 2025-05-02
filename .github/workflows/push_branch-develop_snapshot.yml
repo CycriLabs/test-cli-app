@@ -8,7 +8,7 @@ on:
 env:
   java-version: '21'
   distribution: 'graalvm'
-  image-name: ghcr.io/cycrilabs/test-cli-app
+  IMAGE_NAME: ghcr.io/cycrilabs/test-cli-app
   image-tag-short: 'next'
 
 jobs:
@@ -91,7 +91,7 @@ jobs:
 
       - name: Create and Push Manifest
         run: |
-          IMAGE_WITHOUT_TAG=${image-name#*/}
+          IMAGE_WITHOUT_TAG=${IMAGE_NAME#*/}
 
           # Create the manifest
           docker manifest create ghcr.io/${IMAGE_WITHOUT_TAG}:${{env.image-tag-short}} \
