@@ -96,51 +96,13 @@ jobs:
         run: >
           mvn -B package -DskipTests
           -Dquarkus.container-image.build=true
-          -Dquarkus.native.container-build=true -Dnative
           -Dquarkus.container-image.push=true
           -Dquarkus.container-image.registry=ghcr.io
           -Dquarkus.container-image.username=${{ github.actor }}
           -Dquarkus.container-image.password=${{ secrets.GITHUB_TOKEN }}
 
-  build-artifacts:
-    needs: release
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, windows-latest ]
-    runs-on: ${{ matrix.os }}
-    steps:
-      - name: Checkout [${{ github.head_ref || github.ref_name }}]
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref }}
-
-      - name: Setup GraalVM
-        uses: graalvm/setup-graalvm@v1
-        with:
-          distribution: ${{ env.distribution }}
-          java-version: ${{ env.java-version }}
-          cache: 'maven'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Adapt maven settings
-        uses: s4u/maven-settings-action@v2
-        with:
-          servers: '[{"id": "github", "username": "dummy", "password": "${{ secrets.GITHUB_TOKEN }}"}]'
-          githubServer: false
-
-      - name: Build artifacts
-        run: mvn -B package -DskipTests -P dist,native # space between -P and dist,native is important for Windows PowerShell build
-
-      - name: Upload artifacts
-        uses: CycriLabs/publish-assets@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          asset_dir: 'target/distributions'
-          release_tag: 'latest'
-
   next-dev-version:
-    needs: [build-container-image, build-artifacts]
+    needs: build-container-image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout [${{ github.head_ref || github.ref_name }}]
