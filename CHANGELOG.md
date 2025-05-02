@@ -1,3 +1,18 @@
+# [1.6.0](https://github.com/CycriLabs/test-cli-app/compare/1.5.0...1.6.0) (2025-05-02)
+
+
+### Bug Fixes
+
+* adapt var naming ([d216461](https://github.com/CycriLabs/test-cli-app/commit/d216461e981f96dcef99f0f8256af5918fb9b555))
+
+
+### Features
+
+* add multi arch build ([9ded6f0](https://github.com/CycriLabs/test-cli-app/commit/9ded6f0a0fa67539e6d6611d594e381ccf36c76c))
+* add multi tag arch to release pipeline ([6ba025b](https://github.com/CycriLabs/test-cli-app/commit/6ba025b2d949e0d00261ada1c2e5de85a79d2956))
+* bump quarkus to 3.22.1 ([0520b26](https://github.com/CycriLabs/test-cli-app/commit/0520b264e1f87eb24607c227ed59d16bd21f0bf2))
+* change from latest to next for dev builds ([dc130cb](https://github.com/CycriLabs/test-cli-app/commit/dc130cb646e73e834b09d79e8f41a98f0ac89693))
+
 # [1.5.0](https://github.com/CycriLabs/test-cli-app/compare/1.4.0...1.5.0) (2023-10-24)
 
 
