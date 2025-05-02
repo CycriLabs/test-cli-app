@@ -39,7 +39,7 @@ would like to implement a new feature then consider what kind of change it is:
 If you want to help improve the docs, it's a good idea to let others know what you're working on to
 minimize duplication of effort. Before starting, check out the open issues.
 Comment on an issue to let others know what you're working on, or create a new issue if your work
-doesn't fit within the scope of any of the existing doc fix projects.
+doesn't fit within the scope of the existing doc fix projects.
 
 For large fixes, please build and test the documentation before submitting the Pull Request to be
 sure you haven't accidentally introduced any layout or formatting issues. You should also make
@@ -154,7 +154,7 @@ To ensure consistency throughout the source code, keep these rules in mind as yo
 
 - All features or bug fixes **must be tested** by one or more specs.
 - All public API methods **must be documented**.
-- Code should be check against our **lint rules**: `gulp lint`.
+- Code should be checked against our **lint rules**, e.g.: `npm run lint`.
 
 ## <a name="commit"></a> Git Commit Guidelines
 
@@ -201,7 +201,7 @@ Must be one of the following:
 - **fix**: A bug fix
 - **docs**: Documentation only changes
 - **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing
-  semi-colons, etc)
+  semicolons, etc.)
 - **refactor**: A code change that neither fixes a bug nor adds a feature
 - **perf**: A code change that improves performance
 - **test**: Adding missing tests
@@ -231,8 +231,8 @@ The rest of the commit message is then used for this.
 ### Diff
 
 Add the diff of the commit from `git diff HEAD --stat=73`
-A git diff from a sub directory is possible with the parameter `--relative`.
-Filter can be used via `--diff-filter=[(A|C|D|M|R|T|U|X|B)…​[*]]`.
+A git diff from a subdirectory is possible with the parameter `--relative`.
+Filter can be used via `--diff-filter=[(A|C|D|M|R|T|U|X|B)…[*]]`.
 
-[github]: https://github.com/CycriLabs/keycloak-configurator
+[github]: https://github.com/CycriLabs/test-cli-app
 [stackoverflow]: http://stackoverflow.com/
