@@ -6,10 +6,10 @@ on:
       - develop
 
 env:
-  java-version: '21'
-  distribution: 'graalvm'
+  java-version: 21
+  distribution: graalvm
   IMAGE_NAME: ghcr.io/cycrilabs/test-cli-app
-  image-tag-short: 'next'
+  image-tag-short: next
 
 jobs:
   test:
@@ -27,7 +27,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Adapt maven settings
-        uses: s4u/maven-settings-action@v2
+        uses: s4u/maven-settings-action@v3.1.0
         with:
           servers: '[{"id": "github", "username": "dummy", "password": "${{ secrets.GITHUB_TOKEN }}"}]'
           githubServer: false
@@ -59,7 +59,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Adapt maven settings
-        uses: s4u/maven-settings-action@v2
+        uses: s4u/maven-settings-action@v3.1.0
         with:
           servers: '[{"id": "github", "username": "dummy", "password": "${{ secrets.GITHUB_TOKEN }}"}]'
           githubServer: false

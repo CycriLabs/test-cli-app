@@ -21,7 +21,7 @@ env:
   publish-artifacts: false
   build-native-image: false
   IMAGE_NAME: ghcr.io/cycrilabs/test-cli-app
-  image-tag-short: 'latest'
+  image-tag-short: latest
 
 jobs:
   test:
