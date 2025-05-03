@@ -95,7 +95,7 @@ jobs:
     needs: release
     strategy:
       matrix:
-        architecture: [amd64, arm64]
+        architecture: [ amd64, arm64 ]
         include:
           - architecture: amd64
             runner: ubuntu-24.04
@@ -135,7 +135,7 @@ jobs:
           -Dquarkus.container-image.password=${{ secrets.GITHUB_TOKEN }}
 
   create-manifest:
-    needs: build-container-image
+    needs: [ release, build-container-image ]
     runs-on: ubuntu-latest
     steps:
       - name: Set up Docker Buildx
