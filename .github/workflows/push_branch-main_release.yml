@@ -153,7 +153,7 @@ jobs:
           IMAGE_WITHOUT_TAG=${IMAGE_NAME#*/}
 
           # Version tags to create manifests for
-          VERSION_TAGS=("${${{needs.release.outputs.TAG_MAJOR_MINOR_PATCH}}}" "${${{needs.release.outputs.TAG_MAJOR_MINOR}}}" "${${{needs.release.outputs.TAG_MAJOR}}}")
+          VERSION_TAGS=("${{needs.release.outputs.TAG_MAJOR_MINOR_PATCH}}" "${{needs.release.outputs.TAG_MAJOR_MINOR}}" "${{needs.release.outputs.TAG_MAJOR}}")
 
           for VERSION_TAG in "${VERSION_TAGS[@]}"; do
             echo "Creating and pushing manifest for version: ${VERSION_TAG}"
