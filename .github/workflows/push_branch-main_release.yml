@@ -20,7 +20,7 @@ env:
   author-email: marc.scheib@cycrilabs.com
   publish-artifacts: false
   build-native-image: false
-  image-name: ghcr.io/cycrilabs/test-cli-app
+  IMAGE_NAME: ghcr.io/cycrilabs/test-cli-app
   image-tag-short: 'latest'
 
 jobs:
@@ -39,7 +39,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Adapt maven settings
-        uses: s4u/maven-settings-action@v2
+        uses: s4u/maven-settings-action@v3
         with:
           servers: '[{"id": "github", "username": "dummy", "password": "${{ secrets.GITHUB_TOKEN }}"}]'
           githubServer: false
@@ -67,7 +67,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Adapt maven settings
-        uses: s4u/maven-settings-action@v2
+        uses: s4u/maven-settings-action@v3
         with:
           servers: '[{"id": "github", "username": "dummy", "password": "${{ secrets.GITHUB_TOKEN }}"}]'
           githubServer: false
@@ -117,7 +117,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Adapt maven settings
-        uses: s4u/maven-settings-action@v2
+        uses: s4u/maven-settings-action@v3
         with:
           servers: '[{"id": "github", "username": "dummy", "password": "${{ secrets.GITHUB_TOKEN }}"}]'
           githubServer: false
@@ -150,7 +150,7 @@ jobs:
 
       - name: Create and Push Manifest
         run: |
-          IMAGE_WITHOUT_TAG=${${{env.image-name}}#*/}
+          IMAGE_WITHOUT_TAG=${IMAGE_NAME#*/}
 
           # Version tags to create manifests for
           VERSION_TAGS=("${${{needs.release.outputs.TAG_MAJOR_MINOR_PATCH}}}" "${${{needs.release.outputs.TAG_MAJOR_MINOR}}}" "${${{needs.release.outputs.TAG_MAJOR}}}")
@@ -205,7 +205,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Adapt maven settings
-        uses: s4u/maven-settings-action@v2
+        uses: s4u/maven-settings-action@v3
         with:
           servers: '[{"id": "github", "username": "dummy", "password": "${{ secrets.GITHUB_TOKEN }}"}]'
           githubServer: false
