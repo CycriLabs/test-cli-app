@@ -51,7 +51,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     outputs:
-      TAG_MAJOR_MINOR_PATH: ${{ steps.version.outputs.TAG_MAJOR_MINOR_PATCH }}
+      TAG_MAJOR_MINOR_PATCH: ${{ steps.version.outputs.TAG_MAJOR_MINOR_PATCH }}
       TAG_MAJOR_MINOR: ${{ steps.version.outputs.TAG_MAJOR_MINOR }}
       TAG_MAJOR: ${{ steps.version.outputs.TAG_MAJOR }}
     steps:
