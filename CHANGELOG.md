@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/CycriLabs/test-cli-app/compare/1.6.0...1.7.0) (2025-05-03)
+
+
+### Features
+
+* add support for muli-arch versioned images ([1040ce1](https://github.com/CycriLabs/test-cli-app/commit/1040ce1a7484999338a41c7eeaf8cdedcd4e648d))
+
 # [1.6.0](https://github.com/CycriLabs/test-cli-app/compare/1.5.0...1.6.0) (2025-05-02)
 
 
