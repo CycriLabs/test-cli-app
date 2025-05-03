@@ -78,7 +78,7 @@ jobs:
           node-version: ${{ env.node-js-version }}
 
       - name: Release
-        run: npm exec --package=@semantic-release/changelog --package=@semantic-release/git --package=@semantic-release/exec --yes -- semantic-release --dry-run
+        run: npm exec --package=@semantic-release/changelog --package=@semantic-release/git --package=@semantic-release/exec --yes -- semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_AUTHOR_NAME: ${{ env.author-name }}
